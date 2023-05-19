@@ -1,35 +1,100 @@
 package codingdojo
 
-import com.nhaarman.mockitokotlin2.mock
-import org.junit.Ignore
 import org.junit.Test
 import kotlin.test.assertEquals
 
 class PlayerTest {
 
-    // choose this one if you are familiar with mocks
-    @Ignore("Test is not finished yet")
+    private val anInventory = Inventory(
+        Equipment(
+            leftHand = BasicItem(name = "round shield", baseDamage = 0, damageModifier = 1.4f),
+            rightHand = BasicItem(name = "excalibur", baseDamage = 20, damageModifier = 1.5f),
+            head = BasicItem(name = "helmet of swiftness", baseDamage = 0, damageModifier = 1.2f),
+            feet = BasicItem(name = "ten league boots", baseDamage = 0, damageModifier = 0.1f),
+            chest = BasicItem(name = "breastplate of steel", baseDamage = 0, damageModifier = 1.4f),
+        )
+    )
+
     @Test
-    fun damageCalculationsWithMocks() {
-        val inventory: Inventory = mock()
-        val stats: Stats = mock()
-        val target: SimpleEnemy = mock()
-
-        val damage = Player(inventory, stats).calculateDamage(target)
-
-        assertEquals(10, damage.amount)
+    fun `Player attack an enemy without buffs`() {
+        assertEquals(
+            expected = 131,
+            actual = damageWith(
+                playerInventory = anInventory,
+                playerStats = Stats(10),
+                enemyArmor = SimpleArmor(1),
+                enemyBuffs = emptyList()
+            )
+        )
     }
 
-    // choose this one if you are not familiar with mocks
-    @Ignore("Test is not finished yet")
     @Test
-    fun damageCalculations() {
-        val inventory = Inventory(null !!)
-        val stats = Stats(0)
-        val target = SimpleEnemy(null !!, null !!)
-
-        val damage = Player(inventory, stats).calculateDamage(target)
-
-        assertEquals(10, damage.amount)
+    fun `Armor is ignored with no buffs`() {
+        assertEquals(
+            expected = 131,
+            actual = damageWith(
+                playerInventory = anInventory,
+                playerStats = Stats(10),
+                enemyArmor = SimpleArmor(9999),
+                enemyBuffs = emptyList()
+            )
+        )
     }
+
+    @Test
+    fun `Enemy with basic buff reduce damages`() {
+        assertEquals(
+            expected = 121,
+            actual = damageWith(
+                playerInventory = anInventory,
+                playerStats = Stats(10),
+                enemyArmor = SimpleArmor(10),
+                enemyBuffs = listOf<Buff>(
+                    BasicBuff(soak = 1.0f, damage = 1.0f)
+                )
+            )
+        )
+    }
+
+    @Test
+    fun `Buff soak multiply the armor soak value`() {
+        assertEquals(
+            expected = 101,
+            actual = damageWith(
+                playerInventory = anInventory,
+                playerStats = Stats(10),
+                enemyArmor = SimpleArmor(10),
+                enemyBuffs = listOf<Buff>(
+                    BasicBuff(soak = 3.0f, damage = 1.0f)
+                )
+            )
+        )
+    }
+
+    @Test
+    fun `Buff damage value is ignored`() {
+        assertEquals(
+            expected = 121,
+            actual = damageWith(
+                playerInventory = anInventory,
+                playerStats = Stats(10),
+                enemyArmor = SimpleArmor(10),
+                enemyBuffs = listOf<Buff>(
+                    BasicBuff(soak = 1.0f, damage = 9999.0f)
+                )
+            )
+        )
+    }
+
+    private fun damageWith(
+        playerInventory: Inventory,
+        playerStats: Stats,
+        enemyArmor: SimpleArmor,
+        enemyBuffs: List<Buff>
+    ): Int {
+        val target = SimpleEnemy(enemyArmor, enemyBuffs)
+        val player = Player(playerInventory, playerStats)
+        return player.calculateDamage(target).amount
+    }
+
 }
