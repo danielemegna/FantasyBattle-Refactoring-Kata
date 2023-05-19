@@ -3,7 +3,7 @@ package codingdojo
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class PlayerTest {
+class PlayerWithExcaliburTest {
 
     private val excaliburInventory = Inventory(
         Equipment(
