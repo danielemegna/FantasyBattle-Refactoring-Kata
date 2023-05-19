@@ -5,7 +5,7 @@ import kotlin.test.assertEquals
 
 class PlayerTest {
 
-    private val anInventory = Inventory(
+    private val excaliburInventory = Inventory(
         Equipment(
             leftHand = BasicItem(name = "round shield", baseDamage = 0, damageModifier = 1.4f),
             rightHand = BasicItem(name = "excalibur", baseDamage = 20, damageModifier = 1.5f),
@@ -20,7 +20,7 @@ class PlayerTest {
         assertEquals(
             expected = 131,
             actual = damageWith(
-                playerInventory = anInventory,
+                playerInventory = excaliburInventory,
                 playerStats = Stats(10),
                 enemyArmor = SimpleArmor(1),
                 enemyBuffs = emptyList()
@@ -33,7 +33,7 @@ class PlayerTest {
         assertEquals(
             expected = 131,
             actual = damageWith(
-                playerInventory = anInventory,
+                playerInventory = excaliburInventory,
                 playerStats = Stats(10),
                 enemyArmor = SimpleArmor(9999),
                 enemyBuffs = emptyList()
@@ -46,7 +46,7 @@ class PlayerTest {
         assertEquals(
             expected = 121,
             actual = damageWith(
-                playerInventory = anInventory,
+                playerInventory = excaliburInventory,
                 playerStats = Stats(10),
                 enemyArmor = SimpleArmor(10),
                 enemyBuffs = listOf<Buff>(
@@ -61,7 +61,7 @@ class PlayerTest {
         assertEquals(
             expected = 101,
             actual = damageWith(
-                playerInventory = anInventory,
+                playerInventory = excaliburInventory,
                 playerStats = Stats(10),
                 enemyArmor = SimpleArmor(10),
                 enemyBuffs = listOf<Buff>(
@@ -76,11 +76,43 @@ class PlayerTest {
         assertEquals(
             expected = 121,
             actual = damageWith(
-                playerInventory = anInventory,
+                playerInventory = excaliburInventory,
                 playerStats = Stats(10),
                 enemyArmor = SimpleArmor(10),
                 enemyBuffs = listOf<Buff>(
                     BasicBuff(soak = 1.0f, damage = 9999.0f)
+                )
+            )
+        )
+    }
+
+    @Test
+    fun `Damage is higher with strong stats`() {
+        assertEquals(
+            expected = 301,
+            actual = damageWith(
+                playerInventory = excaliburInventory,
+                playerStats = Stats(100),
+                enemyArmor = SimpleArmor(10),
+                enemyBuffs = listOf<Buff>(
+                    BasicBuff(soak = 1.0f, damage = 1.0f)
+                )
+            )
+        )
+    }
+
+    @Test
+    fun `Enemy with multiple buffs takes less damage coherently`() {
+        assertEquals(
+            expected = 88,
+            actual = damageWith(
+                playerInventory = excaliburInventory,
+                playerStats = Stats(10),
+                enemyArmor = SimpleArmor(10),
+                enemyBuffs = listOf<Buff>(
+                    BasicBuff(soak = 1.0f, damage = 1.0f),
+                    BasicBuff(soak = 2.0f, damage = 1.0f),
+                    BasicBuff(soak = 1.3f, damage = 1.0f)
                 )
             )
         )
