@@ -5,22 +5,21 @@ import kotlin.math.roundToInt
 
 class Player(private val inventory: Inventory, private val stats: Stats) : Target() {
 
-    private val damageModifier: Float
-        get() {
-            val equipment = this.inventory.equipment
-            val leftHand = equipment.leftHand
-            val rightHand = equipment.rightHand
-            val head = equipment.head
-            val feet = equipment.feet
-            val chest = equipment.chest
-            val strengthModifier = stats.strength * 0.1f
-            return strengthModifier +
-                    leftHand.damageModifier +
-                    rightHand.damageModifier +
-                    head.damageModifier +
-                    feet.damageModifier +
-                    chest.damageModifier
-        }
+    private fun calculateDamageModifier(): Float {
+        val equipment = this.inventory.equipment
+        val leftHand = equipment.leftHand
+        val rightHand = equipment.rightHand
+        val head = equipment.head
+        val feet = equipment.feet
+        val chest = equipment.chest
+        val strengthModifier = stats.strength * 0.1f
+        return strengthModifier +
+            leftHand.damageModifier +
+            rightHand.damageModifier +
+            head.damageModifier +
+            feet.damageModifier +
+            chest.damageModifier
+    }
 
     private fun getEquipmentDamage(): Int {
         val equipment = this.inventory.equipment
@@ -30,15 +29,15 @@ class Player(private val inventory: Inventory, private val stats: Stats) : Targe
         val feet = equipment.feet
         val chest = equipment.chest
         return leftHand.baseDamage +
-                rightHand.baseDamage +
-                head.baseDamage +
-                feet.baseDamage +
-                chest.baseDamage
+            rightHand.baseDamage +
+            head.baseDamage +
+            feet.baseDamage +
+            chest.baseDamage
     }
 
     fun calculateDamage(other: Target): Damage {
         val baseDamage = getEquipmentDamage()
-        val damageModifier = damageModifier
+        val damageModifier = calculateDamageModifier()
         val totalDamage = (baseDamage * damageModifier).roundToInt()
         val soak = getSoak(other, totalDamage)
         return Damage(max(0, totalDamage - soak))
