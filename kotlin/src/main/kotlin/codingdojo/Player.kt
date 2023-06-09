@@ -5,26 +5,11 @@ import kotlin.math.roundToInt
 
 class Player(private val equipment: Equipment, private val stats: Stats) : Target() {
 
-    private fun calculateDamageModifier(): Float {
-        val equipment = this.equipment
-        val leftHand = equipment.leftHand
-        val rightHand = equipment.rightHand
-        val head = equipment.head
-        val feet = equipment.feet
-        val chest = equipment.chest
-        val strengthModifier = stats.strength * 0.1f
-        return strengthModifier +
-            leftHand.damageModifier +
-            rightHand.damageModifier +
-            head.damageModifier +
-            feet.damageModifier +
-            chest.damageModifier
-    }
-
-
     fun calculateDamage(other: Target): Damage {
-        val damageModifier = calculateDamageModifier()
-        val totalDamage = (equipment.baseDamage() * damageModifier).roundToInt()
+        val equipmentBaseDamage = equipment.baseDamage()
+        val strengthModifier = stats.strength * 0.1f
+        val damageModifier = equipment.damageModifier(strengthModifier)
+        val totalDamage = (equipmentBaseDamage * damageModifier).roundToInt()
         val soak = getSoak(other, totalDamage)
         return Damage(max(0, totalDamage - soak))
     }

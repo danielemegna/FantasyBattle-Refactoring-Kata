@@ -16,4 +16,14 @@ class Equipment(
             feet.baseDamage +
             chest.baseDamage
     }
+
+    fun damageModifier(strengthModifier: Float): Float {
+        return strengthModifier +
+            leftHand.damageModifier +
+            rightHand.damageModifier +
+            head.damageModifier +
+            feet.damageModifier +
+            chest.damageModifier
+
+    }
 }
