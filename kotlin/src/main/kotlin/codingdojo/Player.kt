@@ -3,10 +3,10 @@ package codingdojo
 import kotlin.math.max
 import kotlin.math.roundToInt
 
-class Player(private val inventory: Inventory, private val stats: Stats) : Target() {
+class Player(private val equipment: Equipment, private val stats: Stats) : Target() {
 
     private fun calculateDamageModifier(): Float {
-        val equipment = this.inventory.equipment
+        val equipment = this.equipment
         val leftHand = equipment.leftHand
         val rightHand = equipment.rightHand
         val head = equipment.head
@@ -22,7 +22,7 @@ class Player(private val inventory: Inventory, private val stats: Stats) : Targe
     }
 
     private fun getEquipmentDamage(): Int {
-        val equipment = this.inventory.equipment
+        val equipment = this.equipment
         val leftHand = equipment.leftHand
         val rightHand = equipment.rightHand
         val head = equipment.head

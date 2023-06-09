@@ -5,14 +5,12 @@ import kotlin.test.assertEquals
 
 class PlayerWithExcaliburTest {
 
-    private val excaliburInventory = Inventory(
-        Equipment(
-            leftHand = BasicItem(name = "round shield", baseDamage = 0, damageModifier = 1.4f),
-            rightHand = BasicItem(name = "excalibur", baseDamage = 20, damageModifier = 1.5f),
-            head = BasicItem(name = "helmet of swiftness", baseDamage = 0, damageModifier = 1.2f),
-            feet = BasicItem(name = "ten league boots", baseDamage = 0, damageModifier = 0.1f),
-            chest = BasicItem(name = "breastplate of steel", baseDamage = 0, damageModifier = 1.4f),
-        )
+    private val excaliburEquipment = Equipment(
+        leftHand = BasicItem(name = "round shield", baseDamage = 0, damageModifier = 1.4f),
+        rightHand = BasicItem(name = "excalibur", baseDamage = 20, damageModifier = 1.5f),
+        head = BasicItem(name = "helmet of swiftness", baseDamage = 0, damageModifier = 1.2f),
+        feet = BasicItem(name = "ten league boots", baseDamage = 0, damageModifier = 0.1f),
+        chest = BasicItem(name = "breastplate of steel", baseDamage = 0, damageModifier = 1.4f),
     )
 
     @Test
@@ -20,7 +18,7 @@ class PlayerWithExcaliburTest {
         assertEquals(
             expected = 131,
             actual = damageWith(
-                playerInventory = excaliburInventory,
+                playerEquipment = excaliburEquipment,
                 playerStats = Stats(10),
                 enemyArmor = SimpleArmor(1),
                 enemyBuffs = emptyList()
@@ -33,7 +31,7 @@ class PlayerWithExcaliburTest {
         assertEquals(
             expected = 131,
             actual = damageWith(
-                playerInventory = excaliburInventory,
+                playerEquipment = excaliburEquipment,
                 playerStats = Stats(10),
                 enemyArmor = SimpleArmor(9999),
                 enemyBuffs = emptyList()
@@ -46,7 +44,7 @@ class PlayerWithExcaliburTest {
         assertEquals(
             expected = 121,
             actual = damageWith(
-                playerInventory = excaliburInventory,
+                playerEquipment = excaliburEquipment,
                 playerStats = Stats(10),
                 enemyArmor = SimpleArmor(10),
                 enemyBuffs = listOf<Buff>(
@@ -61,7 +59,7 @@ class PlayerWithExcaliburTest {
         assertEquals(
             expected = 101,
             actual = damageWith(
-                playerInventory = excaliburInventory,
+                playerEquipment = excaliburEquipment,
                 playerStats = Stats(10),
                 enemyArmor = SimpleArmor(10),
                 enemyBuffs = listOf<Buff>(
@@ -76,7 +74,7 @@ class PlayerWithExcaliburTest {
         assertEquals(
             expected = 121,
             actual = damageWith(
-                playerInventory = excaliburInventory,
+                playerEquipment = excaliburEquipment,
                 playerStats = Stats(10),
                 enemyArmor = SimpleArmor(10),
                 enemyBuffs = listOf<Buff>(
@@ -91,7 +89,7 @@ class PlayerWithExcaliburTest {
         assertEquals(
             expected = 301,
             actual = damageWith(
-                playerInventory = excaliburInventory,
+                playerEquipment = excaliburEquipment,
                 playerStats = Stats(100),
                 enemyArmor = SimpleArmor(10),
                 enemyBuffs = listOf<Buff>(
@@ -106,7 +104,7 @@ class PlayerWithExcaliburTest {
         assertEquals(
             expected = 88,
             actual = damageWith(
-                playerInventory = excaliburInventory,
+                playerEquipment = excaliburEquipment,
                 playerStats = Stats(10),
                 enemyArmor = SimpleArmor(10),
                 enemyBuffs = listOf<Buff>(
@@ -119,13 +117,13 @@ class PlayerWithExcaliburTest {
     }
 
     private fun damageWith(
-        playerInventory: Inventory,
+        playerEquipment: Equipment,
         playerStats: Stats,
         enemyArmor: SimpleArmor,
         enemyBuffs: List<Buff>
     ): Int {
         val target = SimpleEnemy(enemyArmor, enemyBuffs)
-        val player = Player(playerInventory, playerStats)
+        val player = Player(playerEquipment, playerStats)
         return player.calculateDamage(target).amount
     }
 
