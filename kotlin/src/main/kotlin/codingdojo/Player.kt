@@ -7,7 +7,7 @@ class Player(private val equipment: Equipment, private val stats: Stats) : Targe
 
     fun calculateDamage(other: Target): Damage {
         val equipmentBaseDamage = equipment.baseDamage()
-        val strengthModifier = stats.strength * 0.1f
+        val strengthModifier = stats.strengthModifier()
         val damageModifier = equipment.damageModifier(strengthModifier)
         val totalDamage = (equipmentBaseDamage * damageModifier).roundToInt()
         val soak = getSoak(other, totalDamage)
