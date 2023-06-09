@@ -3,7 +3,7 @@ package codingdojo
 import kotlin.math.max
 import kotlin.math.roundToInt
 
-class Player(private val inventory: Inventory, private val stats: Stats): Target() {
+class Player(private val inventory: Inventory, private val stats: Stats) : Target() {
 
     private val damageModifier: Float
         get() {
@@ -53,11 +53,11 @@ class Player(private val inventory: Inventory, private val stats: Stats): Target
         } else if (other is SimpleEnemy) {
             val simpleEnemy = other
             soak = (simpleEnemy.armor.damageSoak *
-                    (simpleEnemy.buffs
-                        .stream()
-                        .mapToDouble { it.soakModifier().toDouble() }
-                        .sum()) + 1f
-                    ).roundToInt()
+                (simpleEnemy.buffs
+                    .stream()
+                    .mapToDouble { it.soakModifier().toDouble() }
+                    .sum()) + 1f
+                ).roundToInt()
         }
         return soak
     }
