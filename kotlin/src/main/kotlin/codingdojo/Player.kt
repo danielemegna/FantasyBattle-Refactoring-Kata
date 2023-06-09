@@ -22,23 +22,22 @@ class Player(private val inventory: Inventory, private val stats: Stats): Target
                     chest.damageModifier
         }
 
-    private val baseDamage: Int
-        get() {
-            val equipment = this.inventory.equipment
-            val leftHand = equipment.leftHand
-            val rightHand = equipment.rightHand
-            val head = equipment.head
-            val feet = equipment.feet
-            val chest = equipment.chest
-            return leftHand.baseDamage +
-                    rightHand.baseDamage +
-                    head.baseDamage +
-                    feet.baseDamage +
-                    chest.baseDamage
-        }
+    private fun getEquipmentDamage(): Int {
+        val equipment = this.inventory.equipment
+        val leftHand = equipment.leftHand
+        val rightHand = equipment.rightHand
+        val head = equipment.head
+        val feet = equipment.feet
+        val chest = equipment.chest
+        return leftHand.baseDamage +
+                rightHand.baseDamage +
+                head.baseDamage +
+                feet.baseDamage +
+                chest.baseDamage
+    }
 
     fun calculateDamage(other: Target): Damage {
-        val baseDamage = baseDamage
+        val baseDamage = getEquipmentDamage()
         val damageModifier = damageModifier
         val totalDamage = (baseDamage * damageModifier).roundToInt()
         val soak = getSoak(other, totalDamage)
