@@ -8,4 +8,12 @@ class Equipment(
     val head: Item,
     val feet: Item,
     val chest: Item
-)
+) {
+    fun baseDamage(): Int {
+        return leftHand.baseDamage +
+            rightHand.baseDamage +
+            head.baseDamage +
+            feet.baseDamage +
+            chest.baseDamage
+    }
+}

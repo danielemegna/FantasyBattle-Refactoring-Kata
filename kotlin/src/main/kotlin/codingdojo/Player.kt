@@ -21,24 +21,10 @@ class Player(private val equipment: Equipment, private val stats: Stats) : Targe
             chest.damageModifier
     }
 
-    private fun getEquipmentDamage(): Int {
-        val equipment = this.equipment
-        val leftHand = equipment.leftHand
-        val rightHand = equipment.rightHand
-        val head = equipment.head
-        val feet = equipment.feet
-        val chest = equipment.chest
-        return leftHand.baseDamage +
-            rightHand.baseDamage +
-            head.baseDamage +
-            feet.baseDamage +
-            chest.baseDamage
-    }
 
     fun calculateDamage(other: Target): Damage {
-        val baseDamage = getEquipmentDamage()
         val damageModifier = calculateDamageModifier()
-        val totalDamage = (baseDamage * damageModifier).roundToInt()
+        val totalDamage = (equipment.baseDamage() * damageModifier).roundToInt()
         val soak = getSoak(other, totalDamage)
         return Damage(max(0, totalDamage - soak))
     }
