@@ -27,6 +27,15 @@ public class PlayerTest {
         assertEquals(testCase.expectedDamage(), damage.getAmount());
     }
 
+    @ParameterizedTest
+    @EnumSource(ProvidedEnemyWithDifferentPlayersTestCases.class)
+    void providedEnemyWithDifferentPlayers(TestCase testCase) {
+        Player player = testCase.player();
+        Target enemy = testCase.enemy();
+        Damage damage = player.calculateDamage(enemy);
+        assertEquals(testCase.expectedDamage(), damage.getAmount());
+    }
+
     @Test
     void providedPlayerVersusProvidedPlayer() {
         Player player = aPlayer().build();

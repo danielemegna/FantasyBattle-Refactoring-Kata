@@ -13,6 +13,11 @@ public class PlayerBuilder {
         return new Player(new Inventory(equipment), stats);
     }
 
+    public PlayerBuilder withStatsStrength(int strength) {
+        this.stats = new Stats(strength);
+        return this;
+    }
+
     private static Equipment anEquipment() {
         return new Equipment(
             new BasicItem("Round Shield", 0, 1.4f),
@@ -23,5 +28,4 @@ public class PlayerBuilder {
 
         );
     }
-
 }
