@@ -1,7 +1,9 @@
 package codingdojo;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
+
+import static java.util.Collections.emptyList;
 
 public class SimpleEnemyBuilder {
 
@@ -21,17 +23,21 @@ public class SimpleEnemyBuilder {
         return this.withArmor(new SimpleArmor(soak));
     }
 
-    public SimpleEnemyBuilder withBuffs(List<Buff> buffs) {
-        this.buffs = buffs;
-        return this;
+    public SimpleEnemyBuilder withBuffs(Buff... buffs) {
+        return withBuffs(Arrays.asList(buffs));
     }
 
     public SimpleEnemyBuilder withoutBuffs() {
-        return this.withBuffs(Collections.emptyList());
+        return this.withBuffs(emptyList());
     }
 
     private SimpleEnemyBuilder withArmor(Armor armor) {
         this.armor = armor;
+        return this;
+    }
+
+    private SimpleEnemyBuilder withBuffs(List<Buff> buffs) {
+        this.buffs = buffs;
         return this;
     }
 }

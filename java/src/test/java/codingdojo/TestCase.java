@@ -15,6 +15,11 @@ public enum TestCase {
         aPlayer(),
         anEnemy().withoutBuffs(),
         107
+    ),
+    ENEMY_WITH_SINGLE_ZERO_BUFF(
+        aPlayer(),
+        anEnemy().withBuffs(new BasicBuff(0, 0)),
+        107
     );
 
     private final Player player;
