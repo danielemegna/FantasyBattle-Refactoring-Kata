@@ -21,19 +21,13 @@ public class PlayerTest {
     @ParameterizedTest
     @EnumSource(ProvidedPlayerWithDifferentEnemiesTestCases.class)
     void providedPlayerWithDifferentEnemies(TestCase testCase) {
-        Player player = testCase.player();
-        Target enemy = testCase.enemy();
-        Damage damage = player.calculateDamage(enemy);
-        assertEquals(testCase.expectedDamage(), damage.getAmount());
+        runTestCase(testCase);
     }
 
     @ParameterizedTest
     @EnumSource(ProvidedEnemyWithDifferentPlayersTestCases.class)
     void providedEnemyWithDifferentPlayers(TestCase testCase) {
-        Player player = testCase.player();
-        Target enemy = testCase.enemy();
-        Damage damage = player.calculateDamage(enemy);
-        assertEquals(testCase.expectedDamage(), damage.getAmount());
+        runTestCase(testCase);
     }
 
     @Test
@@ -43,5 +37,13 @@ public class PlayerTest {
         Damage damage = player.calculateDamage(enemy);
         assertEquals(0, damage.getAmount());
     }
+
+    private static void runTestCase(TestCase testCase) {
+        Player player = testCase.player();
+        Target enemy = testCase.enemy();
+        Damage damage = player.calculateDamage(enemy);
+        assertEquals(testCase.expectedDamage(), damage.getAmount());
+    }
+
 
 }
