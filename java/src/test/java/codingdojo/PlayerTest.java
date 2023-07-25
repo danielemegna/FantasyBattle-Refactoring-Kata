@@ -27,4 +27,12 @@ public class PlayerTest {
         assertEquals(testCase.expectedDamage(), damage.getAmount());
     }
 
+    @Test
+    void providedPlayerVersusProvidedPlayer() {
+        Player player = aPlayer().build();
+        Target enemy = aPlayer().build();
+        Damage damage = player.calculateDamage(enemy);
+        assertEquals(0, damage.getAmount());
+    }
+
 }
