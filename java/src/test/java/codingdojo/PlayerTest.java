@@ -1,9 +1,9 @@
 package codingdojo;
 
+import codingdojo.builders.SimpleEnemyBuilder;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
+import static codingdojo.builders.SimpleEnemyBuilder.anEnemy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlayerTest {
@@ -14,8 +14,9 @@ public class PlayerTest {
         assertEquals(102, damage.getAmount());
     }
 
-    private static Damage damageWith(Player player, SimpleEnemy target) {
-        return player.calculateDamage(target);
+    private static Damage damageWith(Player player, SimpleEnemyBuilder enemyBuilder) {
+        SimpleEnemy enemy = enemyBuilder.build();
+        return player.calculateDamage(enemy);
     }
 
     private static Player aPlayer() {
@@ -23,13 +24,6 @@ public class PlayerTest {
         return new Player(
             new Inventory(equipment),
             new Stats(0)
-        );
-    }
-
-    private static SimpleEnemy anEnemy() {
-        return new SimpleEnemy(
-            new SimpleArmor(5),
-            List.of(new BasicBuff(1.0f, 1.0f))
         );
     }
 
