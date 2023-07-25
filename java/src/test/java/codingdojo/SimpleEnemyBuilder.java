@@ -1,7 +1,6 @@
-package codingdojo.builders;
+package codingdojo;
 
-import codingdojo.*;
-
+import java.util.Collections;
 import java.util.List;
 
 public class SimpleEnemyBuilder {
@@ -18,13 +17,21 @@ public class SimpleEnemyBuilder {
 
     }
 
-    public SimpleEnemyBuilder withArmor(Armor armor) {
-        this.armor = armor;
-        return this;
+    public SimpleEnemyBuilder withArmorSoak(int soak) {
+        return this.withArmor(new SimpleArmor(soak));
     }
 
     public SimpleEnemyBuilder withBuffs(List<Buff> buffs) {
         this.buffs = buffs;
+        return this;
+    }
+
+    public SimpleEnemyBuilder withoutBuffs() {
+        return this.withBuffs(Collections.emptyList());
+    }
+
+    private SimpleEnemyBuilder withArmor(Armor armor) {
+        this.armor = armor;
         return this;
     }
 }
