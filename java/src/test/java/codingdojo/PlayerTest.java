@@ -4,6 +4,7 @@ import codingdojo.builders.SimpleEnemyBuilder;
 import org.junit.jupiter.api.Test;
 
 import static codingdojo.builders.SimpleEnemyBuilder.anEnemy;
+import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlayerTest {
@@ -12,6 +13,20 @@ public class PlayerTest {
     void damageForProvidedExample() {
         Damage damage = damageWith(aPlayer(), anEnemy());
         assertEquals(102, damage.getAmount());
+    }
+
+    @Test
+    void providedPlayerWithEnemyWithDifferentArmor() {
+        SimpleEnemyBuilder enemy = anEnemy().withArmor(new SimpleArmor(8));
+        Damage damage = damageWith(aPlayer(), enemy);
+        assertEquals(96, damage.getAmount());
+    }
+
+    @Test
+    void providedPlayerWithEnemyWithoutBuffs() {
+        SimpleEnemyBuilder enemy = anEnemy().withBuffs(emptyList());
+        Damage damage = damageWith(aPlayer(), enemy);
+        assertEquals(107, damage.getAmount());
     }
 
     private static Damage damageWith(Player player, SimpleEnemyBuilder enemyBuilder) {

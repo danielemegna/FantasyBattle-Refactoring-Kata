@@ -17,4 +17,14 @@ public class SimpleEnemyBuilder {
         return new SimpleEnemy(armor, buffs);
 
     }
+
+    public SimpleEnemyBuilder withArmor(Armor armor) {
+        this.armor = armor;
+        return this;
+    }
+
+    public SimpleEnemyBuilder withBuffs(List<Buff> buffs) {
+        this.buffs = buffs;
+        return this;
+    }
 }
