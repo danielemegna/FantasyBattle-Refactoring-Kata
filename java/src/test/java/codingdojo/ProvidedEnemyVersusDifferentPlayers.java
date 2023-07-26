@@ -15,25 +15,28 @@ public enum ProvidedEnemyVersusDifferentPlayers implements TestCase {
     PLAYER_WITH_TWO_WEAKER_SWORD(aPlayer().withLeftHand(FLASHY_SWORD_OF_DANGER).withRightHand(FLASHY_SWORD_OF_DANGER), 84),
     PLAYER_WITH_TWO_ROUND_SHIELD_CAUSE_NO_DAMAGE(aPlayer().withLeftHand(ROUND_SHIELD).withRightHand(ROUND_SHIELD), 0),
 
+    PLAYER_WITH_TWO_SWORDS_AND_BETTER_STATS(
+        aPlayer()
+            .withStatsStrength(10)
+            .withLeftHand(FLASHY_SWORD_OF_DANGER)
+            .withRightHand(EXCALIBUR_SWORD),
+        176),
     PLAYER_WITH_FIVE_EXCALIBUR(
         aPlayer()
             .withLeftHand(EXCALIBUR_SWORD).withRightHand(EXCALIBUR_SWORD)
             .withHead(EXCALIBUR_SWORD).withFeet(EXCALIBUR_SWORD).withChest(EXCALIBUR_SWORD),
-        740
-    ),
+        740),
     PLAYER_WITH_FIVE_WEAKER_SWORD(
         aPlayer()
             .withLeftHand(FLASHY_SWORD_OF_DANGER).withRightHand(FLASHY_SWORD_OF_DANGER)
             .withHead(FLASHY_SWORD_OF_DANGER).withFeet(FLASHY_SWORD_OF_DANGER).withChest(FLASHY_SWORD_OF_DANGER),
-        240
-    ),
+        240),
     PLAYER_WITH_FIVE_EXCALIBUR_AND_GREAT_STATS(
         aPlayer()
             .withStatsStrength(100)
             .withLeftHand(EXCALIBUR_SWORD).withRightHand(EXCALIBUR_SWORD)
             .withHead(EXCALIBUR_SWORD).withFeet(EXCALIBUR_SWORD).withChest(EXCALIBUR_SWORD),
-        1740
-    ),
+        1740),
 
     ;
 
