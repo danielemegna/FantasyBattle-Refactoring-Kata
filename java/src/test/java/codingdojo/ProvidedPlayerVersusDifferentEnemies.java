@@ -7,6 +7,7 @@ public enum ProvidedPlayerVersusDifferentEnemies implements TestCase {
 
     ENEMY_WITH_BETTER_ARMOR(anEnemy().withArmorSoak(8), 96),
     ENEMY_WITH_GREAT_ARMOR_CAUSE_NO_DAMAGE(anEnemy().withArmorSoak(100), 0),
+    ENEMY_WITH_INCREDIBLE_ARMOR_CAUSE_NO_DAMAGE(anEnemy().withArmorSoak(9999), 0),
     ENEMY_WITH_ZERO_ARMOR(anEnemy().withArmorSoak(0), 112),
     ENEMY_WITH_ZERO_ARMOR_WITHOUT_BUFFS(anEnemy().withArmorSoak(0).withoutBuffs(), 112),
     ENEMY_WITH_ZERO_ARMOR_BUFFS_ARE_IGNORED(
