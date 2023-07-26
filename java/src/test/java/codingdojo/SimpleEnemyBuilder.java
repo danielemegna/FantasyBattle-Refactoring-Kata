@@ -10,6 +10,10 @@ public class SimpleEnemyBuilder {
     private Armor armor = new SimpleArmor(5);
     private List<Buff> buffs = Arrays.asList(new BasicBuff(1.0f, 1.0f));
 
+    public static SimpleEnemy defaultEnemy() {
+        return anEnemy().build();
+    }
+
     public static SimpleEnemyBuilder anEnemy() {
         return new SimpleEnemyBuilder();
     }

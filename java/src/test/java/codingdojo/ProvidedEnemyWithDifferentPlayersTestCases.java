@@ -1,7 +1,7 @@
 package codingdojo;
 
 import static codingdojo.PlayerBuilder.aPlayer;
-import static codingdojo.SimpleEnemyBuilder.anEnemy;
+import static codingdojo.SimpleEnemyBuilder.defaultEnemy;
 
 public enum ProvidedEnemyWithDifferentPlayersTestCases implements TestCase {
 
@@ -23,7 +23,7 @@ public enum ProvidedEnemyWithDifferentPlayersTestCases implements TestCase {
 
     public Target enemy() {
         // this test cases always use the unchanged enemy provided as example
-        return anEnemy().build();
+        return defaultEnemy();
     }
 
     public int expectedDamage() {

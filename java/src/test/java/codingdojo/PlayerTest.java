@@ -4,16 +4,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
-import static codingdojo.PlayerBuilder.aPlayer;
-import static codingdojo.SimpleEnemyBuilder.anEnemy;
+import static codingdojo.PlayerBuilder.excaliburDefaultPlayer;
+import static codingdojo.SimpleEnemyBuilder.defaultEnemy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlayerTest {
 
     @Test
     void damageForProvidedExample() {
-        Player player = aPlayer().build();
-        Target enemy = anEnemy().build();
+        Player player = excaliburDefaultPlayer();
+        Target enemy = defaultEnemy();
         Damage damage = player.calculateDamage(enemy);
         assertEquals(102, damage.getAmount());
     }
@@ -32,8 +32,8 @@ public class PlayerTest {
 
     @Test
     void providedPlayerVersusProvidedPlayer() {
-        Player player = aPlayer().build();
-        Target enemy = aPlayer().build();
+        Player player = excaliburDefaultPlayer();
+        Target enemy = excaliburDefaultPlayer();
         Damage damage = player.calculateDamage(enemy);
         assertEquals(0, damage.getAmount());
     }

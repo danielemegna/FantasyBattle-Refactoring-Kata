@@ -1,6 +1,6 @@
 package codingdojo;
 
-import static codingdojo.PlayerBuilder.aPlayer;
+import static codingdojo.PlayerBuilder.excaliburDefaultPlayer;
 import static codingdojo.SimpleEnemyBuilder.anEnemy;
 
 public enum ProvidedPlayerWithDifferentEnemiesTestCases implements TestCase {
@@ -39,7 +39,7 @@ public enum ProvidedPlayerWithDifferentEnemiesTestCases implements TestCase {
 
     public Player player() {
         // this test cases always use the unchanged player provided as example
-        return aPlayer().build();
+        return excaliburDefaultPlayer();
     }
 
     public Target enemy() {

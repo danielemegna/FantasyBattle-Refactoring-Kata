@@ -5,6 +5,10 @@ public class PlayerBuilder {
     private Equipment equipment = anEquipment();
     private Stats stats = new Stats(0);
 
+    public static Player excaliburDefaultPlayer() {
+        return aPlayer().build();
+    }
+
     public static PlayerBuilder aPlayer() {
         return new PlayerBuilder();
     }
