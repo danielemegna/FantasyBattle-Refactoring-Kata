@@ -1,9 +1,9 @@
 package codingdojo;
 
-import static codingdojo.ProvidedEnemyWithDifferentPlayers.*;
-import static codingdojo.ProvidedPlayerWithDifferentEnemies.*;
+import static codingdojo.ProvidedEnemyVersusDifferentPlayers.*;
+import static codingdojo.ProvidedPlayerVersusDifferentEnemies.*;
 
-public enum CombinedCustomPlayersWithCustomEnemies implements TestCase {
+public enum CombinedCustomPlayersVersusCustomEnemies implements TestCase {
 
     BETTER_STATS_VS_BETTER_ARMOR(PLAYER_WITH_BETTER_STATS, ENEMY_WITH_BETTER_ARMOR, 116),
     BETTER_STATS_VS_GREAT_ARMOR(PLAYER_WITH_BETTER_STATS, ENEMY_WITH_GREAT_ARMOR_CAUSE_NO_DAMAGE, 0),
@@ -51,7 +51,7 @@ public enum CombinedCustomPlayersWithCustomEnemies implements TestCase {
     private final Target enemy;
     private final int expectedDamage;
 
-    CombinedCustomPlayersWithCustomEnemies(TestCase playerTestCase, TestCase enemyTestCase, int expectedDamage) {
+    CombinedCustomPlayersVersusCustomEnemies(TestCase playerTestCase, TestCase enemyTestCase, int expectedDamage) {
         this.player = playerTestCase.player();
         this.enemy = enemyTestCase.enemy();
         this.expectedDamage = expectedDamage;

@@ -3,7 +3,7 @@ package codingdojo;
 import static codingdojo.PlayerBuilder.excaliburDefaultPlayer;
 import static codingdojo.SimpleEnemyBuilder.anEnemy;
 
-public enum ProvidedPlayerWithDifferentEnemies implements TestCase {
+public enum ProvidedPlayerVersusDifferentEnemies implements TestCase {
 
     ENEMY_WITH_BETTER_ARMOR(anEnemy().withArmorSoak(8), 96),
     ENEMY_WITH_GREAT_ARMOR_CAUSE_NO_DAMAGE(anEnemy().withArmorSoak(100), 0),
@@ -48,7 +48,7 @@ public enum ProvidedPlayerWithDifferentEnemies implements TestCase {
     private final Target enemy;
     private final int expectedDamage;
 
-    ProvidedPlayerWithDifferentEnemies(SimpleEnemyBuilder enemy, int expectedDamage) {
+    ProvidedPlayerVersusDifferentEnemies(SimpleEnemyBuilder enemy, int expectedDamage) {
         this.enemy = enemy.build();
         this.expectedDamage = expectedDamage;
     }

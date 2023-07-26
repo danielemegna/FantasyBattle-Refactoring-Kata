@@ -19,20 +19,20 @@ public class PlayerTest {
     }
 
     @ParameterizedTest
-    @EnumSource(ProvidedPlayerWithDifferentEnemies.class)
-    void providedPlayerWithDifferentEnemies(TestCase testCase) {
+    @EnumSource(ProvidedPlayerVersusDifferentEnemies.class)
+    void providedPlayerVersusDifferentEnemies(TestCase testCase) {
         runTestCase(testCase);
     }
 
     @ParameterizedTest
-    @EnumSource(ProvidedEnemyWithDifferentPlayers.class)
-    void providedEnemyWithDifferentPlayers(TestCase testCase) {
+    @EnumSource(ProvidedEnemyVersusDifferentPlayers.class)
+    void providedEnemyVersusDifferentPlayers(TestCase testCase) {
         runTestCase(testCase);
     }
 
     @ParameterizedTest
-    @EnumSource(CombinedCustomPlayersWithCustomEnemies.class)
-    void combinedCustomPlayersWithCustomEnemies(TestCase testCase) {
+    @EnumSource(CombinedCustomPlayersVersusCustomEnemies.class)
+    void combinedCustomPlayersVersusCustomEnemies(TestCase testCase) {
         runTestCase(testCase);
     }
 
