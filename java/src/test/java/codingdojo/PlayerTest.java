@@ -30,6 +30,12 @@ public class PlayerTest {
         runTestCase(testCase);
     }
 
+    @ParameterizedTest
+    @EnumSource(CombinedCustomPlayersWithCustomEnemies.class)
+    void combinedCustomPlayersWithCustomEnemies(TestCase testCase) {
+        runTestCase(testCase);
+    }
+
     @Test
     void providedPlayerVersusProvidedPlayer() {
         Player player = excaliburDefaultPlayer();
