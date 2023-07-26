@@ -2,8 +2,8 @@ package codingdojo;
 
 public class PlayerBuilder {
 
-    private Equipment equipment = anEquipment();
     private Stats stats = new Stats(0);
+    private BasicItem rightHandItem = new BasicItem("Excalibur", 20, 1.5f);
 
     public static Player excaliburDefaultPlayer() {
         return aPlayer().build();
@@ -14,6 +14,13 @@ public class PlayerBuilder {
     }
 
     public Player build() {
+        Equipment equipment = new Equipment(
+            new BasicItem("Round Shield", 0, 1.4f),
+            this.rightHandItem,
+            new BasicItem("Helmet of swiftness", 0, 1.2f),
+            new BasicItem("Ten league boots", 0, 0.1f),
+            new BasicItem("Breastplate of steel", 0, 1.4f)
+        );
         return new Player(new Inventory(equipment), stats);
     }
 
@@ -22,14 +29,8 @@ public class PlayerBuilder {
         return this;
     }
 
-    private static Equipment anEquipment() {
-        return new Equipment(
-            new BasicItem("Round Shield", 0, 1.4f),
-            new BasicItem("Excalibur", 20, 1.5f),
-            new BasicItem("Helmet of swiftness", 0, 1.2f),
-            new BasicItem("Ten league boots", 0, 0.1f),
-            new BasicItem("Breastplate of steel", 0, 1.4f)
-
-        );
+    public PlayerBuilder withRightHand(BasicItem rightHandItem) {
+        this.rightHandItem = rightHandItem;
+        return this;
     }
 }
