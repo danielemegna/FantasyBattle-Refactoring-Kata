@@ -58,6 +58,7 @@ public class PlayerBuilder {
         return this;
     }
 
+    public static final BasicItem FLASHY_SWORD_OF_DANGER =new BasicItem("Flashy sword of danger", 10, 1.0f);
     public static final BasicItem EXCALIBUR_SWORD = new BasicItem("Excalibur", 20, 1.5f);
     public static final BasicItem ROUND_SHIELD = new BasicItem("Round Shield", 0, 1.4f);
     public static final BasicItem HELMET_OF_SWIFTNESS = new BasicItem("Helmet of swiftness", 0, 1.2f);
