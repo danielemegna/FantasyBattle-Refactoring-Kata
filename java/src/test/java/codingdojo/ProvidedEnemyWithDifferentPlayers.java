@@ -3,7 +3,7 @@ package codingdojo;
 import static codingdojo.PlayerBuilder.*;
 import static codingdojo.SimpleEnemyBuilder.defaultEnemy;
 
-public enum ProvidedEnemyWithDifferentPlayersTestCases implements TestCase {
+public enum ProvidedEnemyWithDifferentPlayers implements TestCase {
 
     PLAYER_WITH_BETTER_STATS(aPlayer().withStatsStrength(10), 122),
     PLAYER_WITH_GREAT_STATS(aPlayer().withStatsStrength(100), 302),
@@ -18,7 +18,7 @@ public enum ProvidedEnemyWithDifferentPlayersTestCases implements TestCase {
     private final Player player;
     private final int expectedDamage;
 
-    ProvidedEnemyWithDifferentPlayersTestCases(PlayerBuilder player, int expectedDamage) {
+    ProvidedEnemyWithDifferentPlayers(PlayerBuilder player, int expectedDamage) {
         this.player = player.build();
         this.expectedDamage = expectedDamage;
     }

@@ -19,13 +19,13 @@ public class PlayerTest {
     }
 
     @ParameterizedTest
-    @EnumSource(ProvidedPlayerWithDifferentEnemiesTestCases.class)
+    @EnumSource(ProvidedPlayerWithDifferentEnemies.class)
     void providedPlayerWithDifferentEnemies(TestCase testCase) {
         runTestCase(testCase);
     }
 
     @ParameterizedTest
-    @EnumSource(ProvidedEnemyWithDifferentPlayersTestCases.class)
+    @EnumSource(ProvidedEnemyWithDifferentPlayers.class)
     void providedEnemyWithDifferentPlayers(TestCase testCase) {
         runTestCase(testCase);
     }
